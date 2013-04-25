@@ -15,6 +15,7 @@ angular.module('amIDownOnePageApp')
 
     try {
         $scope.times = JSON.parse(ls.get('times')) || [];
+        console.log($scope.times);
     } catch(err) {
         ls.clearAll(); $scope.times = [];
     }
@@ -25,9 +26,10 @@ angular.module('amIDownOnePageApp')
             ls.clearAll();
             return;
         }
-        $scope.times.push({text: $scope.text, time: new Date(), up: isUp});
+        $scope.times.push({text: $scope.text, time: new Date().valueOf(), up: isUp});
         ls.add('times', JSON.stringify($scope.times));
         $scope.text = '';
+        $scope.currentlyDown = !$scope.currentlyDown;
     }
 
     $scope.moodDown = function() {
@@ -37,5 +39,9 @@ angular.module('amIDownOnePageApp')
         moodChange(true);
     }
 
-    $scope.currentlyDown = false;
+    try {
+        $scope.currentlyDown = $scope.times && !$scope.times[$scope.times.length - 1].up;
+    } catch(err) { $scope.currentlyDown = false; }
+
+    $scope.isUp = function(x) { return x ? 'up' : 'down'; }
   }]);

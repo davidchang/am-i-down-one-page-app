@@ -11,6 +11,7 @@
     </div>
 </div>
 <div ng-show='currentlyDown'>
+    <h1>You appear to be down :/</h1>
     <h2>Are you up?</h2>
     <textarea ng-model='text' placeholder='Optional explanation'></textarea>
     <div>
@@ -20,7 +21,7 @@
 
 <div>
     <h2>History</h2>
-    <div ng-class="{true: 'up', false:'down'}[up]" ng-repeat='time in times'>
-        {{time.text}} at {{time.time}}
+    <div ng:class="isUp(time.up)" ng-repeat='time in times'>
+        {{time.text}} at {{time.time | date:'medium'}}
     </div>
 </div>
