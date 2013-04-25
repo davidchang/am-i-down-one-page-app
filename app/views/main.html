@@ -2,29 +2,29 @@
 <input type='text' ng-model='text'></input>
 <button ng-click='save()'>Save</button>
 -->
-<div ng-show='!currentlyDown'>
-    <h1>You appear to be up! High five!</h1>
+<section ng-show='!currentlyDown'>
+    <h1>You are up! High five!</h1>
     <h2>Are you down?</h2>
     <textarea ng-model='text' placeholder='Optional explanation'></textarea>
     <div>
         <button ng-click='moodDown()'>I am Down</button>
     </div>
-</div>
-<div ng-show='currentlyDown'>
-    <h1>You appear to be down :/</h1>
+</section>
+<section ng-show='currentlyDown'>
+    <h1>You are down :/ I hope things get worked out</h1>
     <h2>Are you up?</h2>
     <textarea ng-model='text' placeholder='Optional explanation'></textarea>
     <div>
         <button ng-click='moodUp()'>I am Up</button>
     </div>
-</div>
+</section>
 
-<div>
+<section id='uptime'>
     <h2>Uptime</h2>
     <div>You're up <span class='bold'>{{uptime}}%</span> of the time</div>
-</div>
+</section>
 
-<div id='history'>
+<section id='history'>
     <h2>History</h2>
     <div class='time'>Started at {{startTime | date:'medium'}}</div>
     <div class='time' ng-repeat='time in times'>
@@ -37,5 +37,5 @@
             {{time.text}}
         </div>
     </div>
-</div>
+</setion>
 
