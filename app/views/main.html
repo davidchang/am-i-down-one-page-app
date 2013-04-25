@@ -20,8 +20,22 @@
 </div>
 
 <div>
+    <h2>Uptime</h2>
+    <div>You're up <span class='bold'>{{uptime}}%</span> of the time</div>
+</div>
+
+<div id='history'>
     <h2>History</h2>
-    <div ng:class="isUp(time.up)" ng-repeat='time in times'>
-        {{time.text}} at {{time.time | date:'medium'}}
+    <div class='time'>Started at {{startTime | date:'medium'}}</div>
+    <div class='time' ng-repeat='time in times'>
+        <div ng:class="isUp(time.up)" >
+            <span ng-show='time.up'>Up</span>
+            <span ng-show='!time.up'>Down</span>
+            at {{time.time | date:'medium'}}
+        </div>
+        <div>
+            {{time.text}}
+        </div>
     </div>
 </div>
+

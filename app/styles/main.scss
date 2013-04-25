@@ -6,3 +6,17 @@
 .down {
     color: red;
 }
+.bold {
+    font-weight: bold;
+}
+.time {
+    padding: 5px 0px;
+    margin: 5px 0px;
+    border-bottom: 1px solid #CCC;
+    &:last-child {
+        border-bottom: 0px;
+    }
+}
+#history {
+    margin-bottom: 30px;
+}
