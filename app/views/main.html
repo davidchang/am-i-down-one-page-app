@@ -1,7 +1,3 @@
-<!--
-<input type='text' ng-model='text'></input>
-<button ng-click='save()'>Save</button>
--->
 <section ng-show='!currentlyDown'>
     <h1>You are up! High five!</h1>
     <h2>Are you down?</h2>
@@ -19,13 +15,18 @@
     </div>
 </section>
 
-<section id='uptime'>
+<section class='middleSection'>
     <h2>Uptime</h2>
     <div>You're up <span class='bold'>{{uptime}}%</span> of the time</div>
 </section>
 
 <section id='history'>
     <h2>History</h2>
+    <heatmap startTime='startTime' data='times'></heatmap>
+</section>
+
+<section id='logs'>
+    <h2>Logs</h2>
     <div class='time'>Started at {{startTime | date:'medium'}}</div>
     <div class='time' ng-repeat='time in times'>
         <div ng:class="isUp(time.up)" >
