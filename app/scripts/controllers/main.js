@@ -20,11 +20,6 @@ angular.module('amIDownOnePageApp')
     }
 
     var moodChange = function(isUp) {
-        //todo: delete
-        if($scope.text == 'clear') {
-            ls.clearAll();
-            return;
-        }
         $scope.times.push({text: $scope.text, time: new Date().valueOf(), up: isUp});
         ls.add('times', JSON.stringify($scope.times));
         $scope.text = '';
@@ -72,34 +67,4 @@ angular.module('amIDownOnePageApp')
     }, 5000);
 
     $scope.isUp = function(x) { return x ? 'up' : 'down'; }
-    $scope.formatForHeatMap = function() {
-        var now = new Date().valueOf();
-        var twoWeeksAgo = now - (1000 * 60 * 60 * 24 * 14);
-        var startTime = $scope.startTime > twoWeeksAgo ? $scope.startTime : twoWeeksAgo;
-        var moodIsUp = true;
-        var startIndex = 0;
-        if($scope.startTime <= twoWeeksAgo) {
-            for(var i = 0, len = $scope.times.length; i < len; ++i) {
-                if($scope.times[i] > twoWeeksAgo) {
-                    startIndex = i;
-                    moodIsUp = $scope.times[i ? i-1 : 0].up;
-                    break;
-                }
-            }
-        }
-
-        var data = {};
-        
-        for(var i = +startTime; i <= +now; i += 60000) {
-            /*
-            while(startIndex < $scope.times.length && i > $scope.times[startIndex]) {
-                moodIsUp = $scope.times[++startIndex].up;
-            }
-            */
-            data[i + ''] = 20; //moodIsUp ? 20 : 10;
-        }
-
-        //return $scope.times;
-        return data;
-    }
   }]);
