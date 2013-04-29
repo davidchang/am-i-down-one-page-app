@@ -22,8 +22,7 @@
 
 <section id='logs'>
     <h2>Logs</h2>
-    <div class='time'>Started at {{startTime | date:'medium'}}</div>
-    <div class='time' ng-repeat='time in times'>
+    <div class='time' ng-repeat='time in times | reverseByTime'>
         <div ng:class="isUp(time.up)" >
             <span ng-show='time.up'>Up</span>
             <span ng-show='!time.up'>Down</span>
@@ -33,5 +32,6 @@
             {{time.text}}
         </div>
     </div>
+    <div class='time'>Started at {{startTime | date:'medium'}}</div>
 </setion>
 
